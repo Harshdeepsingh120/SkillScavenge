@@ -1,0 +1,105 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# docker-compose.yml  —  SkillScavenge Full Stack Orchestration
+# ─────────────────────────────────────────────────────────────────────────────
+# Services:
+#   db        — MySQL 8.0 database (persistent volume)
+#   api       — FastAPI backend  (port 8000)
+#   dashboard — Streamlit app    (port 8501)
+#   drift     — One-shot drift monitor (runs and exits, logs to DB)
+#
+# Usage:
+#   docker compose up --build          # Start all services
+#   docker compose up db api dashboard # Skip drift runner
+#   docker compose run --rm drift      # Run drift check manually
+# ─────────────────────────────────────────────────────────────────────────────
+
+version: "3.9"
+
+services:
+
+  # ── MySQL Database ────────────────────────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: skillscavenge_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE:      skillscavenge
+      MYSQL_USER:          skillscavenge_user
+      MYSQL_PASSWORD:      skillscavenge_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - skillscavenge_mysql_data:/var/lib/mysql
+      - ./schema_mysql.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost",
+             "-u", "skillscavenge_user",
+             "-pskillscavenge_pass"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - skillscavenge_net
+
+  # ── FastAPI Backend ───────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: skillscavenge_api
+    restart: unless-stopped
+    env_file: .env
+    # DB_HOST will be taken from .env directly (Railway host)
+    ports:
+      - "8000:8000"
+    # depends_on: db removed so it doesn't block if we run without local db
+    healthcheck:
+      test: ["CMD-SHELL",
+             "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/health')\""]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - skillscavenge_net
+
+  # ── Streamlit Dashboard ───────────────────────────────────────────────────
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: skillscavenge_dashboard
+    restart: unless-stopped
+    env_file: .env
+    # DB_HOST will be taken from .env directly
+    ports:
+      - "8501:8501"
+    networks:
+      - skillscavenge_net
+
+  # ── Drift Monitor (one-shot job) ─────────────────────────────────────────
+  drift:
+    build:
+      context: .
+      dockerfile: Dockerfile.api     # reuse the API image (has all deps)
+    container_name: skillscavenge_drift
+    env_file: .env
+    # DB_HOST will be taken from .env directly
+    volumes:
+      - ./drift_reports:/app/drift_reports   # mount local folder for HTML output
+      - ./mlops:/app/mlops                   # mount scripts
+    command: ["python", "mlops/drift_monitor.py"]
+    networks:
+      - skillscavenge_net
+    profiles:
+      - drift    # only starts when explicitly requested: docker compose --profile drift up
+
+# ── Persistent Volumes ────────────────────────────────────────────────────
+volumes:
+  skillscavenge_mysql_data:
+    driver: local
+
+# ── Networks ──────────────────────────────────────────────────────────────
+networks:
+  skillscavenge_net:
+    driver: bridge
