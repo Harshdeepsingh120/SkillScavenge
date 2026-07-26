@@ -45,15 +45,18 @@ html, body, [class*="css"] {
     max-width: 1400px !important;
 }
 
-/* ── Tabs (top nav) ── */
-.stTabs [data-baseweb="tab-list"] {
-    background: transparent !important;
-    border-bottom: 1px solid #1a2228 !important;
-    gap: 0rem;
-    margin-bottom: 2rem;
-    padding-bottom: 0;
+/* ── Top Horizontal Navigation Styling (styled st.radio) ── */
+div[data-testid="stRadio"] {
+    margin-bottom: 2rem !important;
 }
-.stTabs [data-baseweb="tab"] {
+div[data-testid="stRadio"] > div {
+    background: transparent !important;
+    gap: 1.2rem !important;
+    border-bottom: 1px solid #1a2228 !important;
+    padding-bottom: 10px !important;
+    flex-wrap: wrap !important;
+}
+div[data-testid="stRadio"] label {
     background: transparent !important;
     border: none !important;
     color: #4a6070 !important;
@@ -61,25 +64,23 @@ html, body, [class*="css"] {
     font-size: 13px !important;
     font-weight: 500 !important;
     letter-spacing: 0.04em !important;
-    padding: 10px 22px 10px 22px !important;
-    border-radius: 0 !important;
-    border-bottom: 2px solid transparent !important;
-    transition: color 0.2s ease, border-color 0.2s ease !important;
+    cursor: pointer !important;
+    padding: 6px 16px !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
 }
-.stTabs [aria-selected="true"] {
-    background: transparent !important;
-    color: #5DCAA5 !important;
-    border-bottom: 2px solid #5DCAA5 !important;
-}
-.stTabs [data-baseweb="tab"]:hover {
+div[data-testid="stRadio"] label:hover {
     color: #d6e4ec !important;
-    background: transparent !important;
+    background: rgba(255,255,255,0.03) !important;
 }
-.stTabs [data-baseweb="tab-highlight"] {
-    background: transparent !important;
-    display: none !important;
+div[data-testid="stRadio"] label[data-checked="true"] {
+    color: #5DCAA5 !important;
+    font-weight: 600 !important;
+    background: rgba(93,202,165,0.08) !important;
+    border: 1px solid rgba(93,202,165,0.2) !important;
 }
-.stTabs [data-baseweb="tab-border"] {
+/* Hide radio indicator dots */
+div[data-testid="stRadio"] label > div:first-child {
     display: none !important;
 }
 
@@ -348,8 +349,6 @@ PLOTLY_THEME = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
     font=dict(color="#4a6070", family="Inter"),
-    xaxis=dict(gridcolor="#1a2228", zeroline=False, tickfont=dict(color="#6b7f8a"), linecolor="#1a2228"),
-    yaxis=dict(gridcolor="#1a2228", zeroline=False, tickfont=dict(color="#8099a8"), linecolor="#1a2228"),
 )
 
 # ── DB & Model Connection Caching ─────────────────────────────────────────────
@@ -384,9 +383,9 @@ def run_query(sql, params=None):
         res = conn.execute(text(sql), params or {})
         return pd.DataFrame(res.fetchall(), columns=res.keys())
 
-# ── Wordmark ─────────────────────────────────────────────────────────────────
+# ── Wordmark Header ───────────────────────────────────────────────────────────
 st.markdown("""
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;">
     <span style="font-family:'Inter',sans-serif;font-size:20px;font-weight:700;
                  color:#d6e4ec;letter-spacing:-0.01em;">SkillScavenge</span>
     <span style="font-size:10px;font-weight:600;letter-spacing:0.12em;
@@ -397,18 +396,18 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Top Navigation ────────────────────────────────────────────────────────────
-tab_hunt, tab_signals, tab_roles, tab_predict, tab_health = st.tabs([
-    "the hunt",
-    "skill signals",
-    "open roles",
-    "pay predictor",
-    "model health",
-])
+active_tab = st.radio(
+    "Navigation",
+    ["the hunt", "skill signals", "open roles", "pay predictor", "model health"],
+    horizontal=True,
+    label_visibility="collapsed",
+    key="nav_radio_top"
+)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# TAB 1: THE HUNT — Market Overview
+# PAGE 1: THE HUNT — Market Overview
 # ══════════════════════════════════════════════════════════════════════════════
-with tab_hunt:
+if active_tab == "the hunt":
     st.markdown("""
     <div class="page-header">
         <div class="page-heading">the hunt</div>
@@ -569,9 +568,9 @@ with tab_hunt:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# TAB 2: SKILL SIGNALS — Skill Intelligence
+# PAGE 2: SKILL SIGNALS — Skill Intelligence
 # ══════════════════════════════════════════════════════════════════════════════
-with tab_signals:
+elif active_tab == "skill signals":
     st.markdown("""
     <div class="page-header">
         <div class="page-heading">skill signals</div>
@@ -581,9 +580,17 @@ with tab_signals:
 
     fc1, fc2 = st.columns(2)
     with fc1:
-        selected_country = st.selectbox("Country", ["All Countries", "United States", "United Kingdom", "India", "Worldwide"])
+        selected_country = st.selectbox(
+            "Country",
+            ["All Countries", "United States", "United Kingdom", "India", "Worldwide"],
+            key="sig_country_select"
+        )
     with fc2:
-        selected_source = st.selectbox("Source", ["All Sources", "Adzuna", "RemoteOK"])
+        selected_source = st.selectbox(
+            "Source",
+            ["All Sources", "Adzuna", "RemoteOK"],
+            key="sig_source_select"
+        )
 
     country_code_map = {"United States": "us", "United Kingdom": "gb", "India": "in", "Worldwide": "worldwide"}
     country_code = country_code_map.get(selected_country)
@@ -622,8 +629,10 @@ with tab_signals:
         fig.update_traces(marker_color="#1d9e75", marker_line_width=0)
         fig.update_layout(**PLOTLY_THEME, height=450, margin=dict(l=0, r=10, t=0, b=0))
         fig.update_yaxes(categoryorder="total ascending",
-                         tickfont=dict(family="Inter", size=12, color="#8099a8"))
-        fig.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"))
+                         tickfont=dict(family="Inter", size=12, color="#8099a8"),
+                         gridcolor="#1a2228", linecolor="#1a2228")
+        fig.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
+                         gridcolor="#1a2228", linecolor="#1a2228")
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
@@ -634,7 +643,8 @@ with tab_signals:
         base_skill = st.selectbox(
             "Target skill",
             all_skills_list,
-            index=all_skills_list.index("Python") if "Python" in all_skills_list else 0
+            index=all_skills_list.index("Python") if "Python" in all_skills_list else 0,
+            key="sig_target_skill_select"
         )
 
         recs = recommend_similar_skills(base_skill, all_skills=all_skills_list, top_n=8)
@@ -658,7 +668,8 @@ with tab_signals:
             )
             fig3.update_layout(**PLOTLY_THEME, height=350, margin=dict(l=0, r=50, t=0, b=0))
             fig3.update_yaxes(categoryorder="total ascending",
-                              tickfont=dict(family="Inter", size=11, color="#8099a8"))
+                              tickfont=dict(family="Inter", size=11, color="#8099a8"),
+                              gridcolor="#1a2228", linecolor="#1a2228")
             fig3.update_xaxes(visible=False)
             st.plotly_chart(fig3, use_container_width=True)
 
@@ -689,17 +700,19 @@ with tab_signals:
         fig4.update_traces(marker_color="#D4537E", marker_line_width=0)
         fig4.update_layout(**PLOTLY_THEME, height=360, margin=dict(l=0, r=0, t=0, b=0))
         fig4.update_yaxes(tickprefix="$", tickformat=",.0f",
-                          tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"))
-        fig4.update_xaxes(tickfont=dict(family="Inter", size=11, color="#8099a8"))
+                          tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
+                          gridcolor="#1a2228", linecolor="#1a2228")
+        fig4.update_xaxes(tickfont=dict(family="Inter", size=11, color="#8099a8"),
+                          gridcolor="#1a2228", linecolor="#1a2228")
         st.plotly_chart(fig4, use_container_width=True)
     else:
         st.info("Insufficient salary-populated mappings to generate valuation charts.")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# TAB 3: OPEN ROLES — Apply for Jobs
+# PAGE 3: OPEN ROLES — Apply for Jobs
 # ══════════════════════════════════════════════════════════════════════════════
-with tab_roles:
+elif active_tab == "open roles":
     st.markdown("""
     <div class="page-header">
         <div class="page-heading">open roles</div>
@@ -710,15 +723,23 @@ with tab_roles:
     col_f1, col_f2, col_f3, col_f4 = st.columns(4)
 
     with col_f1:
-        sel_country = st.selectbox("Country", ["All Countries", "United States", "United Kingdom", "India", "Worldwide"])
+        sel_country = st.selectbox(
+            "Country",
+            ["All Countries", "United States", "United Kingdom", "India", "Worldwide"],
+            key="roles_country_select"
+        )
     with col_f2:
-        sel_source = st.selectbox("Source", ["All Sources", "Adzuna", "RemoteOK"])
+        sel_source = st.selectbox(
+            "Source",
+            ["All Sources", "Adzuna", "RemoteOK"],
+            key="roles_source_select"
+        )
     with col_f3:
         all_skills_df = run_query("SELECT name FROM skills ORDER BY name")
         all_skills = ["All Skills"] + (all_skills_df["name"].tolist() if not all_skills_df.empty else [])
-        sel_skill = st.selectbox("Required Skill", all_skills)
+        sel_skill = st.selectbox("Required Skill", all_skills, key="roles_skill_select")
     with col_f4:
-        search_term = st.text_input("Keyword", placeholder="Python, Engineer...")
+        search_term = st.text_input("Keyword", placeholder="Python, Engineer...", key="roles_kw_input")
 
     where_conds = ["jp.redirect_url IS NOT NULL AND jp.redirect_url != ''"]
     params = {}
@@ -756,12 +777,12 @@ with tab_roles:
 
     job_results = run_query(query_jobs, params)
 
-    st.caption(f"Showing up to 30 active postings")
+    st.caption("Showing up to 30 active postings")
 
     if job_results.empty:
         st.info("No postings match the current filters. Try broadening your criteria.")
     else:
-        for _, job in job_results.iterrows():
+        for idx, job in job_results.iterrows():
             src_label = str(job["source"]).upper()
             badge_class = "badge-teal" if src_label == "ADZUNA" else "badge-pink"
             country_display = str(job["country"]).upper()
@@ -785,14 +806,14 @@ with tab_roles:
                 <div class="job-desc">{desc_snippet}</div>
             </div>
             """, unsafe_allow_html=True)
-            st.link_button(f"Apply — {job['title']}", job["redirect_url"], use_container_width=False)
+            st.link_button(f"Apply — {job['title']}", job["redirect_url"], use_container_width=False, key=f"apply_btn_{job['id']}_{idx}")
             st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# TAB 4: PAY PREDICTOR — Salary Predictor
+# PAGE 4: PAY PREDICTOR — Salary Predictor
 # ══════════════════════════════════════════════════════════════════════════════
-with tab_predict:
+elif active_tab == "pay predictor":
     st.markdown("""
     <div class="page-header">
         <div class="page-heading">pay predictor</div>
@@ -807,15 +828,20 @@ with tab_predict:
         user_skills = st.multiselect(
             "Select skills",
             options=model_skills,
-            default=["Python", "AWS", "SQL"] if "Python" in model_skills else []
+            default=["Python", "AWS", "SQL"] if "Python" in model_skills else [],
+            key="pred_skills_select"
         )
     with col2:
-        user_country = st.selectbox("Geography", ["United States (USD)", "United Kingdom (GBP)"])
+        user_country = st.selectbox(
+            "Geography",
+            ["United States (USD)", "United Kingdom (GBP)"],
+            key="pred_geo_select"
+        )
 
     country_key = "us" if "United States" in user_country else "gb"
 
     st.markdown("")
-    if st.button("Calculate salary estimate"):
+    if st.button("Calculate salary estimate", key="pred_calc_button"):
         if not user_skills:
             st.warning("Select at least one skill to generate an estimate.")
         else:
@@ -830,7 +856,7 @@ with tab_predict:
                 else:
                     fv.append(1 if col.lower() in skills_lower else 0)
 
-            # Predict — identical, read-only
+            # Predict — read-only
             pred_log = float(model.predict(np.array([fv], dtype=np.float32))[0])
             pred_usd = float(np.expm1(pred_log))
 
@@ -880,8 +906,10 @@ with tab_predict:
                     title_font=dict(size=11, color="#4a6070"),
                 )
                 fig_shap.update_yaxes(categoryorder="total ascending",
-                                      tickfont=dict(family="Inter", size=11, color="#8099a8"))
-                fig_shap.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"))
+                                      tickfont=dict(family="Inter", size=11, color="#8099a8"),
+                                      gridcolor="#1a2228", linecolor="#1a2228")
+                fig_shap.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
+                                      gridcolor="#1a2228", linecolor="#1a2228")
                 st.plotly_chart(fig_shap, use_container_width=True)
 
             # Gauge
@@ -939,9 +967,9 @@ with tab_predict:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# TAB 5: MODEL HEALTH — Model Diagnostics
+# PAGE 5: MODEL HEALTH — Model Diagnostics
 # ══════════════════════════════════════════════════════════════════════════════
-with tab_health:
+elif active_tab == "model health":
     st.markdown("""
     <div class="page-header">
         <div class="page-heading">model health</div>
@@ -1013,6 +1041,8 @@ with tab_health:
         fig_imp.update_traces(marker_color="#D4537E", marker_line_width=0)
         fig_imp.update_layout(**PLOTLY_THEME, height=400, margin=dict(l=0, r=10, t=0, b=0))
         fig_imp.update_yaxes(categoryorder="total ascending",
-                             tickfont=dict(family="Inter", size=11, color="#8099a8"))
-        fig_imp.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"))
+                             tickfont=dict(family="Inter", size=11, color="#8099a8"),
+                             gridcolor="#1a2228", linecolor="#1a2228")
+        fig_imp.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
+                             gridcolor="#1a2228", linecolor="#1a2228")
         st.plotly_chart(fig_imp, use_container_width=True)
