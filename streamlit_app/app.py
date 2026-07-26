@@ -30,7 +30,7 @@ html, body, [class*="css"] {
 }
 
 .stApp {
-    background-color: #090e10;
+    background-color: #080c0e;
 }
 
 /* ── Hide sidebar entirely ── */
@@ -39,102 +39,111 @@ html, body, [class*="css"] {
 
 /* ── Container padding ── */
 .block-container {
-    padding-top: 1.2rem !important;
+    padding-top: 3.2rem !important;
     padding-left: 2.2rem !important;
     padding-right: 2.2rem !important;
     max-width: 1250px !important;
 }
 
-/* ── Top Header Navigation Styling ── */
-div[data-testid="stRadio"] {
-    margin-bottom: 0 !important;
+/* ── Brand Header Row ── */
+.brand-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
 }
-div[data-testid="stRadio"] > div {
-    background: transparent !important;
-    gap: 1.8rem !important;
-    border: none !important;
-    padding: 0 !important;
-    justify-content: flex-end !important;
-    flex-wrap: nowrap !important;
+.brand-title-spec {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
 }
-div[data-testid="stRadio"] label {
+
+/* ── Top Tabs Styling ── */
+.stTabs [data-baseweb="tab-list"] {
+    background: transparent !important;
+    border-bottom: 1px solid #141c22 !important;
+    gap: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 0 !important;
+}
+.stTabs [data-baseweb="tab"] {
     background: transparent !important;
     border: none !important;
-    color: #6a7c88 !important;
+    color: #7b8c98 !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 13.5px !important;
     font-weight: 500 !important;
     letter-spacing: 0.01em !important;
-    cursor: pointer !important;
-    padding: 4px 0px 8px 0px !important;
-    border-bottom: 2px solid transparent !important;
+    padding: 8px 4px 10px 4px !important;
     border-radius: 0 !important;
+    border-bottom: 2.5px solid transparent !important;
     transition: all 0.15s ease !important;
 }
-div[data-testid="stRadio"] label:hover {
-    color: #d6e4ec !important;
+.stTabs [data-baseweb="tab"]:hover {
+    color: #ffffff !important;
 }
-div[data-testid="stRadio"] label[data-checked="true"] {
+.stTabs [aria-selected="true"] {
+    background: transparent !important;
     color: #5DCAA5 !important;
     font-weight: 600 !important;
-    border-bottom: 2.5 solid #5DCAA5 !important;
+    border-bottom: 2.5px solid #5DCAA5 !important;
 }
-div[data-testid="stRadio"] label > div:first-child {
-    display: none !important;
-}
+.stTabs [data-baseweb="tab-highlight"] { display: none !important; }
+.stTabs [data-baseweb="tab-border"] { display: none !important; }
 
-/* ── Page Header ── */
+/* ── Page Subtitle ── */
 .page-subtitle-spec {
     font-size: 13.5px;
     color: #6b7f8a;
     font-weight: 400;
-    margin-top: 1.2rem;
     margin-bottom: 1.8rem;
     line-height: 1.5;
-    max-width: 600px;
+    max-width: 650px;
 }
 
-/* ── Bento Grid Mockup Spec ── */
+/* ── Bento Grid Cards Spec ── */
 .card-vault {
     background: #0b1815;
     border: 1px solid #142e27;
     border-radius: 12px;
-    padding: 26px 28px;
+    padding: 24px 28px;
     height: 100%;
 }
 .card-runs {
     background: #180e15;
     border: 1px solid #2e1425;
     border-radius: 12px;
-    padding: 26px 28px;
+    padding: 24px 28px;
     height: 100%;
 }
 .card-sm-teal {
     background: #0b1513;
     border: 1.5px solid #1d4036;
     border-radius: 12px;
-    padding: 20px 22px;
+    padding: 18px 22px;
     height: 100%;
 }
 .card-sm-pink {
     background: #160c13;
     border: 1.5px solid #401d35;
     border-radius: 12px;
-    padding: 20px 22px;
+    padding: 18px 22px;
     height: 100%;
 }
 .card-panel-teal {
     background: #091210;
     border: 1px solid #142923;
     border-radius: 12px;
-    padding: 24px 28px;
+    padding: 22px 26px;
     height: 100%;
 }
 .card-panel-pink {
     background: #140911;
     border: 1px solid #291422;
     border-radius: 12px;
-    padding: 24px 28px;
+    padding: 22px 26px;
     height: 100%;
 }
 
@@ -164,7 +173,7 @@ div[data-testid="stRadio"] label > div:first-child {
     color: #ffffff;
     letter-spacing: -0.03em;
     line-height: 1;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 .val-sm {
     font-family: 'Inter', sans-serif;
@@ -195,7 +204,7 @@ div[data-testid="stRadio"] label > div:first-child {
     width: 9px;
 }
 
-/* ── Country Progress Bars ── */
+/* ── Country Progress Bars (Single line HTML, zero whitespace indent) ── */
 .c-row {
     display: flex;
     align-items: center;
@@ -232,7 +241,7 @@ div[data-testid="stRadio"] label > div:first-child {
 
 /* ── Salary Range Track Visual ── */
 .sal-track-box {
-    margin: 26px 0 18px 0;
+    margin: 24px 0 16px 0;
 }
 .sal-track {
     background: #2a1420;
@@ -263,7 +272,7 @@ div[data-testid="stRadio"] label > div:first-child {
     margin-top: 12px;
 }
 
-/* ── Tables & Controls ── */
+/* ── Tables & Form Controls ── */
 .stDataFrame {
     border: 1px solid #182228 !important;
     border-radius: 8px !important;
@@ -370,27 +379,22 @@ def run_query(sql, params=None):
         res = conn.execute(text(sql), params or {})
         return pd.DataFrame(res.fetchall(), columns=res.keys())
 
-# ── Top Bar Header (Title Left, Nav Right) ─────────────────────────────────────
-h_col1, h_col2 = st.columns([1, 1.8])
+# ── Brand Title Header ────────────────────────────────────────────────────────
+st.markdown('<div class="brand-title-spec">SkillScavenge</div>', unsafe_allow_html=True)
 
-with h_col1:
-    st.markdown('<div style="font-family:\'Georgia\', serif; font-size: 26px; font-weight: 700; color: #ffffff; padding-top: 2px;">SkillScavenge</div>', unsafe_allow_html=True)
-
-with h_col2:
-    active_tab = st.radio(
-        "Navigation",
-        ["the hunt", "skill signals", "open roles", "pay predictor", "model health"],
-        horizontal=True,
-        label_visibility="collapsed",
-        key="nav_radio_top"
-    )
-
-st.markdown("<div style='border-bottom: 1px solid #141c22; margin-top: 8px; margin-bottom: 0px;'></div>", unsafe_allow_html=True)
+# ── Top Nav Tabs ──────────────────────────────────────────────────────────────
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "the hunt",
+    "skill signals",
+    "open roles",
+    "pay predictor",
+    "model health",
+])
 
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 1: THE HUNT — Market Overview
 # ══════════════════════════════════════════════════════════════════════════════
-if active_tab == "the hunt":
+with tab1:
     st.markdown("""
     <div class="page-subtitle-spec">
         Every postings scraped, every skill logged, every dollar traced back to the data that predicts it.
@@ -480,30 +484,18 @@ if active_tab == "the hunt":
         """)
         max_c = country_data["count"].max() if not country_data.empty else 1
         
-        bars_html = ""
+        # Build single-line HTML string without multi-line indentation to prevent Markdown code block wrapping
+        bar_rows = []
         for _, row in country_data.iterrows():
             code = str(row["country"]).upper()
             cnt = row["count"]
             pct = int((cnt / max_c) * 100)
             cnt_str = f"{cnt/1000:.0f}k" if cnt >= 1000 else str(cnt)
-            bars_html += f"""
-            <div class="c-row">
-                <div class="c-lbl">{code}</div>
-                <div class="c-track">
-                    <div class="c-fill" style="width: {pct}%;"></div>
-                </div>
-                <div class="c-val">{cnt_str}</div>
-            </div>
-            """
+            bar_rows.append(f'<div class="c-row"><div class="c-lbl">{code}</div><div class="c-track"><div class="c-fill" style="width:{pct}%;"></div></div><div class="c-val">{cnt_str}</div></div>')
 
-        st.markdown(f"""
-        <div class="card-panel-teal">
-            <div class="lbl-teal">WHERE THE ROLES ARE</div>
-            <div style="margin-top: 18px;">
-                {bars_html}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        bars_html = "".join(bar_rows)
+
+        st.markdown(f'<div class="card-panel-teal"><div class="lbl-teal">WHERE THE ROLES ARE</div><div style="margin-top:18px;">{bars_html}</div></div>', unsafe_allow_html=True)
 
     with chart_col2:
         salary_data = run_query("""
@@ -513,7 +505,6 @@ if active_tab == "the hunt":
               AND country IN ('us', 'gb')
         """)
         if not salary_data.empty and len(salary_data) > 4:
-            # Ensure midpoint is float to prevent decimal.Decimal * float TypeError
             midpoints = salary_data["midpoint"].astype(float)
             med_k = int(midpoints.median() / 1000)
             q25_k = int(midpoints.quantile(0.25) / 1000)
@@ -526,18 +517,7 @@ if active_tab == "the hunt":
         width_pct = int(((q75_k - q25_k) / (max_scale - min_scale)) * 100)
         dot_pct = int(((med_k - min_scale) / (max_scale - min_scale)) * 100)
 
-        st.markdown(f"""
-        <div class="card-panel-pink">
-            <div class="lbl-pink">SALARY SPREAD (USD)</div>
-            <div class="sal-track-box">
-                <div class="sal-track">
-                    <div class="sal-fill" style="left: {left_pct}%; width: {width_pct}%;"></div>
-                    <div class="sal-dot" style="left: calc({dot_pct}% - 7px);"></div>
-                </div>
-            </div>
-            <div class="sal-sub">median ${med_k}k - IQR ${q25_k}k–${q75_k}k</div>
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(f'<div class="card-panel-pink"><div class="lbl-pink">SALARY SPREAD (USD)</div><div class="sal-track-box"><div class="sal-track"><div class="sal-fill" style="left:{left_pct}%; width:{width_pct}%;"></div><div class="sal-dot" style="left:calc({dot_pct}% - 7px);"></div></div></div><div class="sal-sub">median ${med_k}k - IQR ${q25_k}k–${q75_k}k</div></div>', unsafe_allow_html=True)
 
     st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
     st.markdown('<div class="lbl-teal" style="margin-bottom:12px;">TOP HIRING COMPANIES</div>', unsafe_allow_html=True)
@@ -555,7 +535,7 @@ if active_tab == "the hunt":
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 2: SKILL SIGNALS — Skill Intelligence
 # ══════════════════════════════════════════════════════════════════════════════
-elif active_tab == "skill signals":
+with tab2:
     st.markdown("""
     <div class="page-subtitle-spec">
         What the market is paying attention to — and what it's quietly starting to ignore.
@@ -567,13 +547,13 @@ elif active_tab == "skill signals":
         selected_country = st.selectbox(
             "Country",
             ["All Countries", "United States", "United Kingdom", "India", "Worldwide"],
-            key="sig_country_select"
+            key="tab2_country_select"
         )
     with fc2:
         selected_source = st.selectbox(
             "Source",
             ["All Sources", "Adzuna", "RemoteOK"],
-            key="sig_source_select"
+            key="tab2_source_select"
         )
 
     country_code_map = {"United States": "us", "United Kingdom": "gb", "India": "in", "Worldwide": "worldwide"}
@@ -628,7 +608,7 @@ elif active_tab == "skill signals":
             "Target skill",
             all_skills_list,
             index=all_skills_list.index("Python") if "Python" in all_skills_list else 0,
-            key="sig_target_skill_select"
+            key="tab2_target_skill_select"
         )
 
         recs = recommend_similar_skills(base_skill, all_skills=all_skills_list, top_n=8)
@@ -696,7 +676,7 @@ elif active_tab == "skill signals":
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 3: OPEN ROLES — Apply for Jobs
 # ══════════════════════════════════════════════════════════════════════════════
-elif active_tab == "open roles":
+with tab3:
     st.markdown("""
     <div class="page-subtitle-spec">
         Live postings, filtered to your stack. Click through and apply directly.
@@ -709,20 +689,20 @@ elif active_tab == "open roles":
         sel_country = st.selectbox(
             "Country",
             ["All Countries", "United States", "United Kingdom", "India", "Worldwide"],
-            key="roles_country_select"
+            key="tab3_country_select"
         )
     with col_f2:
         sel_source = st.selectbox(
             "Source",
             ["All Sources", "Adzuna", "RemoteOK"],
-            key="roles_source_select"
+            key="tab3_source_select"
         )
     with col_f3:
         all_skills_df = run_query("SELECT name FROM skills ORDER BY name")
         all_skills = ["All Skills"] + (all_skills_df["name"].tolist() if not all_skills_df.empty else [])
-        sel_skill = st.selectbox("Required Skill", all_skills, key="roles_skill_select")
+        sel_skill = st.selectbox("Required Skill", all_skills, key="tab3_skill_select")
     with col_f4:
-        search_term = st.text_input("Keyword", placeholder="Python, Engineer...", key="roles_kw_input")
+        search_term = st.text_input("Keyword", placeholder="Python, Engineer...", key="tab3_kw_input")
 
     where_conds = ["jp.redirect_url IS NOT NULL AND jp.redirect_url != ''"]
     params = {}
@@ -796,7 +776,7 @@ elif active_tab == "open roles":
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 4: PAY PREDICTOR — Salary Predictor
 # ══════════════════════════════════════════════════════════════════════════════
-elif active_tab == "pay predictor":
+with tab4:
     st.markdown("""
     <div class="page-subtitle-spec">
         Build your stack. Get a number. Understand exactly which skills are moving the needle.
@@ -811,19 +791,19 @@ elif active_tab == "pay predictor":
             "Select skills",
             options=model_skills,
             default=["Python", "AWS", "SQL"] if "Python" in model_skills else [],
-            key="pred_skills_select"
+            key="tab4_skills_select"
         )
     with col2:
         user_country = st.selectbox(
             "Geography",
             ["United States (USD)", "United Kingdom (GBP)"],
-            key="pred_geo_select"
+            key="tab4_geo_select"
         )
 
     country_key = "us" if "United States" in user_country else "gb"
 
     st.markdown("")
-    if st.button("Calculate salary estimate", key="pred_calc_button"):
+    if st.button("Calculate salary estimate", key="tab4_calc_button"):
         if not user_skills:
             st.warning("Select at least one skill to generate an estimate.")
         else:
@@ -950,7 +930,7 @@ elif active_tab == "pay predictor":
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 5: MODEL HEALTH — Model Diagnostics
 # ══════════════════════════════════════════════════════════════════════════════
-elif active_tab == "model health":
+with tab5:
     st.markdown("""
     <div class="page-subtitle-spec">
         Training runs, hyperparameter records, and feature weight distribution — all in one place.
