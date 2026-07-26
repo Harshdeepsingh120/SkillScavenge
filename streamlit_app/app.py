@@ -39,50 +39,55 @@ html, body, [class*="css"] {
 
 /* ── Container padding ── */
 .block-container {
-    padding-top: 3.2rem !important;
+    padding-top: 2.5rem !important;
     padding-left: 2.2rem !important;
     padding-right: 2.2rem !important;
     max-width: 1250px !important;
 }
 
-/* ── Brand Header Row ── */
-.brand-header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
+/* ── Brand Header Title ── */
 .brand-title-spec {
     font-family: 'Georgia', serif;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.01em;
+    padding-top: 2px;
 }
 
-/* ── Top Tabs Styling ── */
+/* ── Top Tabs Styling (Right Aligned in col_nav) ── */
 .stTabs [data-baseweb="tab-list"] {
     background: transparent !important;
-    border-bottom: 1px solid #141c22 !important;
-    gap: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
+    border: none !important;
+    gap: 1.8rem !important;
+    justify-content: flex-end !important;
+    margin-bottom: 0 !important;
     padding-bottom: 0 !important;
 }
 .stTabs [data-baseweb="tab"] {
     background: transparent !important;
     border: none !important;
-    color: #7b8c98 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #6b7f8a !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 13.5px !important;
     font-weight: 500 !important;
     letter-spacing: 0.01em !important;
-    padding: 8px 4px 10px 4px !important;
+    padding: 4px 0px 8px 0px !important;
     border-radius: 0 !important;
     border-bottom: 2.5px solid transparent !important;
     transition: all 0.15s ease !important;
 }
+.stTabs [data-baseweb="tab"]:focus,
+.stTabs [data-baseweb="tab"]:active,
+.stTabs [data-baseweb="tab"]:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
 .stTabs [data-baseweb="tab"]:hover {
-    color: #ffffff !important;
+    color: #d6e4ec !important;
 }
 .stTabs [aria-selected="true"] {
     background: transparent !important;
@@ -93,11 +98,12 @@ html, body, [class*="css"] {
 .stTabs [data-baseweb="tab-highlight"] { display: none !important; }
 .stTabs [data-baseweb="tab-border"] { display: none !important; }
 
-/* ── Page Subtitle ── */
+/* ── Subtitle ── */
 .page-subtitle-spec {
     font-size: 13.5px;
     color: #6b7f8a;
     font-weight: 400;
+    margin-top: 1.2rem;
     margin-bottom: 1.8rem;
     line-height: 1.5;
     max-width: 650px;
@@ -204,7 +210,7 @@ html, body, [class*="css"] {
     width: 9px;
 }
 
-/* ── Country Progress Bars (Single line HTML, zero whitespace indent) ── */
+/* ── Country Progress Bars ── */
 .c-row {
     display: flex;
     align-items: center;
@@ -272,7 +278,7 @@ html, body, [class*="css"] {
     margin-top: 12px;
 }
 
-/* ── Tables & Form Controls ── */
+/* ── Tables & Controls ── */
 .stDataFrame {
     border: 1px solid #182228 !important;
     border-radius: 8px !important;
@@ -379,17 +385,22 @@ def run_query(sql, params=None):
         res = conn.execute(text(sql), params or {})
         return pd.DataFrame(res.fetchall(), columns=res.keys())
 
-# ── Brand Title Header ────────────────────────────────────────────────────────
-st.markdown('<div class="brand-title-spec">SkillScavenge</div>', unsafe_allow_html=True)
+# ── Header Row: Title Left, Tabs Right ────────────────────────────────────────
+col_brand, col_nav = st.columns([1.1, 2.9])
 
-# ── Top Nav Tabs ──────────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "the hunt",
-    "skill signals",
-    "open roles",
-    "pay predictor",
-    "model health",
-])
+with col_brand:
+    st.markdown('<div class="brand-title-spec">SkillScavenge</div>', unsafe_allow_html=True)
+
+with col_nav:
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "the hunt",
+        "skill signals",
+        "open roles",
+        "pay predictor",
+        "model health",
+    ])
+
+st.markdown("<div style='border-bottom: 1px solid #141c22; margin-top: 2px; margin-bottom: 0px;'></div>", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 1: THE HUNT — Market Overview
@@ -484,7 +495,6 @@ with tab1:
         """)
         max_c = country_data["count"].max() if not country_data.empty else 1
         
-        # Build single-line HTML string without multi-line indentation to prevent Markdown code block wrapping
         bar_rows = []
         for _, row in country_data.iterrows():
             code = str(row["country"]).upper()
