@@ -21,7 +21,7 @@ st.set_page_config(
 # ── Global CSS / Design System ────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 /* ── Reset & Base ── */
 html, body, [class*="css"] {
@@ -30,292 +30,299 @@ html, body, [class*="css"] {
 }
 
 .stApp {
-    background-color: #0a0f12;
+    background-color: #080c0e;
 }
 
 /* ── Hide sidebar entirely ── */
 [data-testid="stSidebar"] { display: none !important; }
 [data-testid="collapsedControl"] { display: none !important; }
 
-/* ── Top padding reduction ── */
+/* ── Container padding ── */
 .block-container {
-    padding-top: 1.2rem !important;
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-    max-width: 1400px !important;
+    padding-top: 1.5rem !important;
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+    max-width: 1350px !important;
 }
 
-/* ── Top Horizontal Navigation Styling (styled st.radio) ── */
+/* ── Top Header Bar (Wordmark + Nav) ── */
+.top-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #141c22;
+    padding-bottom: 14px;
+    margin-bottom: 1.8rem;
+}
+.brand-title {
+    font-family: 'Georgia', 'Cinzel', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+/* ── Styled Radio for Nav Tabs ── */
 div[data-testid="stRadio"] {
-    margin-bottom: 2rem !important;
+    margin-bottom: 0 !important;
 }
 div[data-testid="stRadio"] > div {
     background: transparent !important;
-    gap: 1.2rem !important;
-    border-bottom: 1px solid #1a2228 !important;
-    padding-bottom: 10px !important;
-    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    border: none !important;
+    padding: 0 !important;
+    flex-wrap: nowrap !important;
 }
 div[data-testid="stRadio"] label {
     background: transparent !important;
     border: none !important;
-    color: #4a6070 !important;
+    color: #5c7080 !important;
     font-family: 'Inter', sans-serif !important;
     font-size: 13px !important;
     font-weight: 500 !important;
-    letter-spacing: 0.04em !important;
+    letter-spacing: 0.02em !important;
     cursor: pointer !important;
-    padding: 6px 16px !important;
-    border-radius: 6px !important;
+    padding: 6px 0px 8px 0px !important;
+    border-bottom: 2px solid transparent !important;
+    border-radius: 0 !important;
     transition: all 0.2s ease !important;
 }
 div[data-testid="stRadio"] label:hover {
     color: #d6e4ec !important;
-    background: rgba(255,255,255,0.03) !important;
 }
 div[data-testid="stRadio"] label[data-checked="true"] {
     color: #5DCAA5 !important;
     font-weight: 600 !important;
-    background: rgba(93,202,165,0.08) !important;
-    border: 1px solid rgba(93,202,165,0.2) !important;
+    border-bottom: 2px solid #5DCAA5 !important;
 }
-/* Hide radio indicator dots */
 div[data-testid="stRadio"] label > div:first-child {
     display: none !important;
 }
 
-/* ── Page header ── */
+/* ── Page Header ── */
 .page-header {
-    margin-bottom: 2rem;
-}
-.page-heading {
-    font-family: 'Inter', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #d6e4ec;
-    letter-spacing: -0.01em;
-    margin: 0 0 6px 0;
+    margin-bottom: 2.2rem;
 }
 .page-subtitle {
-    font-size: 13px;
-    color: #4a6070;
+    font-size: 13.5px;
+    color: #6b7f8a;
     font-weight: 400;
     margin: 0;
     line-height: 1.5;
+    max-width: 650px;
 }
 
-/* ── Section label ── */
-.section-label {
+/* ── Bento Grid Mockup Spec ── */
+.bento-card-vault {
+    background: #0b1815;
+    border: 1px solid #142e27;
+    border-radius: 12px;
+    padding: 26px 30px;
+    height: 100%;
+}
+.bento-card-runs {
+    background: #180e15;
+    border: 1px solid #2e1425;
+    border-radius: 12px;
+    padding: 26px 30px;
+    height: 100%;
+}
+.bento-card-sm-teal {
+    background: #0b1513;
+    border: 1px solid #1a3830;
+    border-radius: 12px;
+    padding: 22px 24px;
+    height: 100%;
+}
+.bento-card-sm-pink {
+    background: #160c13;
+    border: 1px solid #381a2e;
+    border-radius: 12px;
+    padding: 22px 24px;
+    height: 100%;
+}
+.bento-card-panel-teal {
+    background: #091210;
+    border: 1px solid #142923;
+    border-radius: 12px;
+    padding: 24px 28px;
+    height: 100%;
+}
+.bento-card-panel-pink {
+    background: #140911;
+    border: 1px solid #291422;
+    border-radius: 12px;
+    padding: 24px 28px;
+    height: 100%;
+}
+
+.bento-label-teal {
     font-family: 'Inter', sans-serif;
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #4a6070;
-    margin-bottom: 1.2rem;
-    margin-top: 2rem;
+    color: #5DCAA5;
+    margin-bottom: 10px;
 }
-
-/* ── Bento cards ── */
-.bento-card {
-    background: #0e1417;
-    border: 1px solid #1a2228;
-    border-radius: 10px;
-    padding: 24px 26px 20px 26px;
-    height: 100%;
-    box-sizing: border-box;
-}
-.bento-hero {
-    padding: 28px 30px 24px 30px;
-    min-height: 170px;
-}
-.bento-sm {
-    padding: 20px 22px 18px 22px;
-    min-height: 110px;
-}
-.bento-teal  { border-top: 3px solid #5DCAA5 !important; }
-.bento-pink  { border-top: 3px solid #D4537E !important; }
-
-.card-label {
+.bento-label-pink {
     font-family: 'Inter', sans-serif;
-    font-size: 9.5px;
-    font-weight: 600;
-    letter-spacing: 0.13em;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #4a6070;
-    margin-bottom: 8px;
-}
-.card-value {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 38px;
-    font-weight: 700;
-    color: #d6e4ec;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-.card-value-sm {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 28px;
-    font-weight: 700;
-    color: #d6e4ec;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-.card-sub {
-    font-size: 11px;
-    color: #4a6070;
-    font-weight: 400;
-    margin-top: 4px;
-}
-
-/* ── Spark bars (inline) ── */
-.spark-row {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    margin-top: 14px;
-    height: 28px;
-}
-.spark-bar {
-    background: #1d9e75;
-    border-radius: 2px 2px 0 0;
-    width: 9px;
-    opacity: 0.8;
-}
-
-/* ── Prediction result card ── */
-.predict-result {
-    background: #0e1417;
-    border: 1px solid #1a2228;
-    border-top: 3px solid #D4537E;
-    border-radius: 10px;
-    padding: 32px 36px;
-    text-align: center;
-    margin: 1.5rem 0;
-}
-.predict-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 9.5px;
-    font-weight: 600;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: #4a6070;
-    margin-bottom: 12px;
-}
-.predict-value {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 52px;
-    font-weight: 700;
     color: #D4537E;
+    margin-bottom: 10px;
+}
+
+.bento-val-hero {
+    font-family: 'Inter', 'JetBrains Mono', monospace;
+    font-size: 46px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 14px;
+}
+.bento-val-sm {
+    font-family: 'Inter', 'JetBrains Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
     letter-spacing: -0.02em;
     line-height: 1;
 }
-.predict-sub {
-    font-size: 13px;
-    color: #4a6070;
+
+.bento-sub-pink {
+    font-size: 11px;
+    color: #7a5068;
     margin-top: 8px;
 }
 
-/* ── Job card ── */
-.job-card {
-    background: #0e1417;
-    border: 1px solid #1a2228;
-    border-radius: 10px;
-    padding: 20px 24px;
-    margin-bottom: 12px;
+/* ── Spark Bars ── */
+.spark-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 26px;
+    margin-top: 10px;
 }
-.job-badge {
-    font-size: 9px;
+.spark-bar-teal {
+    background: #1d9e75;
+    border-radius: 2px 2px 0 0;
+    width: 10px;
+}
+
+/* ── Country Ranked Progress Bars ── */
+.country-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+.country-code-lbl {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 9px;
-    border-radius: 4px;
-    display: inline-block;
+    color: #6b8a80;
+    width: 24px;
 }
-.badge-teal { background: rgba(93,202,165,0.12); color: #5DCAA5; }
-.badge-pink  { background: rgba(212,83,126,0.12); color: #D4537E; }
-.job-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #d6e4ec;
-    margin: 10px 0 3px 0;
+.country-bar-bg {
+    flex-grow: 1;
+    background: #12241f;
+    border-radius: 20px;
+    height: 8px;
+    overflow: hidden;
 }
-.job-meta {
-    font-size: 12px;
-    color: #4a6070;
-    margin-bottom: 8px;
+.country-bar-fill {
+    background: #1d9e75;
+    height: 100%;
+    border-radius: 20px;
 }
-.job-desc {
-    font-size: 12px;
-    color: #8099a8;
-    line-height: 1.55;
-}
-.job-salary {
+.country-count-lbl {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 11px;
     color: #5DCAA5;
+    width: 38px;
+    text-align: right;
 }
 
-/* ── Tables / DataFrames ── */
+/* ── Salary Range Track Visual ── */
+.salary-range-container {
+    margin: 28px 0 20px 0;
+    position: relative;
+}
+.salary-range-track {
+    background: #2a1420;
+    height: 6px;
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+}
+.salary-range-fill {
+    background: #D4537E;
+    height: 6px;
+    border-radius: 10px;
+    position: absolute;
+}
+.salary-range-dot {
+    width: 14px;
+    height: 14px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: -4px;
+    box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+.salary-range-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 11.5px;
+    color: #8c5570;
+    margin-top: 14px;
+}
+
+/* ── Tables & Selects ── */
 .stDataFrame {
-    border: 1px solid #1a2228 !important;
+    border: 1px solid #182228 !important;
     border-radius: 8px !important;
-    background: #0e1417 !important;
+    background: #090e11 !important;
 }
-
-/* ── Selectbox / Inputs ── */
 div[data-baseweb="select"] > div {
-    background-color: #0e1417 !important;
-    border: 1px solid #1a2228 !important;
+    background-color: #0c1216 !important;
+    border: 1px solid #182228 !important;
     border-radius: 7px !important;
 }
 .stTextInput > div > div {
-    background: #0e1417 !important;
-    border: 1px solid #1a2228 !important;
+    background: #0c1216 !important;
+    border: 1px solid #182228 !important;
     border-radius: 7px !important;
     color: #d6e4ec !important;
 }
-
-/* ── Buttons ── */
 .stButton > button {
-    background: #0e1417 !important;
+    background: #0c1216 !important;
     color: #5DCAA5 !important;
     font-weight: 600 !important;
     font-size: 13px !important;
-    letter-spacing: 0.04em !important;
     border: 1px solid #1d9e75 !important;
     padding: 10px 28px !important;
     border-radius: 7px !important;
-    transition: all 0.2s ease !important;
 }
 .stButton > button:hover {
     background: rgba(29,158,117,0.1) !important;
-    border-color: #5DCAA5 !important;
 }
 .stLinkButton > a {
     background: transparent !important;
     color: #5DCAA5 !important;
     font-size: 12px !important;
-    border: 1px solid #1a2228 !important;
+    border: 1px solid #182228 !important;
     border-radius: 7px !important;
-    padding: 8px 16px !important;
-    font-weight: 500 !important;
 }
-
-/* ── Multiselect ── */
 [data-baseweb="tag"] {
     background: rgba(29,158,117,0.15) !important;
     border: 1px solid #1d9e75 !important;
-    border-radius: 4px !important;
 }
 [data-baseweb="tag"] span { color: #5DCAA5 !important; }
-
-/* ── Divider ── */
-hr { border-color: #1a2228 !important; opacity: 1 !important; }
+hr { border-color: #141c22 !important; opacity: 1 !important; }
 
 /* ── st.metric override ── */
 [data-testid="stMetric"] {
@@ -337,10 +344,9 @@ hr { border-color: #1a2228 !important; opacity: 1 !important; }
     color: #d6e4ec !important;
 }
 
-/* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #0a0f12; }
-::-webkit-scrollbar-thumb { background: #1a2228; border-radius: 3px; }
+::-webkit-scrollbar-track { background: #080c0e; }
+::-webkit-scrollbar-thumb { background: #141c22; border-radius: 3px; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -383,26 +389,22 @@ def run_query(sql, params=None):
         res = conn.execute(text(sql), params or {})
         return pd.DataFrame(res.fetchall(), columns=res.keys())
 
-# ── Wordmark Header ───────────────────────────────────────────────────────────
-st.markdown("""
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;">
-    <span style="font-family:'Inter',sans-serif;font-size:20px;font-weight:700;
-                 color:#d6e4ec;letter-spacing:-0.01em;">SkillScavenge</span>
-    <span style="font-size:10px;font-weight:600;letter-spacing:0.12em;
-                 text-transform:uppercase;color:#4a6070;padding-top:2px;">
-        job market intelligence
-    </span>
-</div>
-""", unsafe_allow_html=True)
+# ── Header Layout (Wordmark Left + Top Nav Right) ─────────────────────────────
+h_col1, h_col2 = st.columns([1, 2.2])
 
-# ── Top Navigation ────────────────────────────────────────────────────────────
-active_tab = st.radio(
-    "Navigation",
-    ["the hunt", "skill signals", "open roles", "pay predictor", "model health"],
-    horizontal=True,
-    label_visibility="collapsed",
-    key="nav_radio_top"
-)
+with h_col1:
+    st.markdown('<div class="brand-title">SkillScavenge</div>', unsafe_allow_html=True)
+
+with h_col2:
+    active_tab = st.radio(
+        "Navigation",
+        ["the hunt", "skill signals", "open roles", "pay predictor", "model health"],
+        horizontal=True,
+        label_visibility="collapsed",
+        key="nav_radio_top"
+    )
+
+st.markdown("<div style='margin-bottom: 1.2rem;'></div>", unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 1: THE HUNT — Market Overview
@@ -410,8 +412,7 @@ active_tab = st.radio(
 if active_tab == "the hunt":
     st.markdown("""
     <div class="page-header">
-        <div class="page-heading">the hunt</div>
-        <div class="page-subtitle">Every posting scraped, every skill logged, every dollar traced back to the data that predicts it.</div>
+        <div class="page-subtitle">Every postings scraped, every skill logged, every dollar traced back to the data that predicts it.</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -432,130 +433,132 @@ if active_tab == "the hunt":
     except Exception:
         last_run_str = "—"
 
-    # ── Bento row 1: hero + medium ──
+    # ── Bento row 1: Hero Vault Card + Hero Model Runs Card ──
     col_hero, col_mid = st.columns([3, 2])
 
     with col_hero:
         spark_html = "".join([
-            f'<div class="spark-bar" style="height:{h}px;"></div>'
-            for h in [9, 13, 10, 18, 14, 22, 16, 28]
+            f'<div class="spark-bar-teal" style="height:{h}px;"></div>'
+            for h in [10, 14, 11, 20, 16, 24, 18, 26]
         ])
         st.markdown(f"""
-        <div class="bento-card bento-hero bento-teal">
-            <div class="card-label">Postings in the Vault</div>
-            <div class="card-value">{stats['total_rows']:,}</div>
-            <div class="spark-row">{spark_html}</div>
+        <div class="bento-card-vault">
+            <div class="bento-label-teal">POSTINGS IN THE VAULT</div>
+            <div class="bento-val-hero">{stats['total_rows']:,}</div>
+            <div class="spark-container">{spark_html}</div>
         </div>
         """, unsafe_allow_html=True)
 
     with col_mid:
         st.markdown(f"""
-        <div class="bento-card bento-hero bento-pink">
-            <div class="card-label">Model Runs Logged</div>
-            <div class="card-value">{stats['total_runs']}</div>
-            <div class="card-sub">last retrain {last_run_str}</div>
+        <div class="bento-card-runs">
+            <div class="bento-label-pink">MODEL RUNS LOGGED</div>
+            <div class="bento-val-hero">{stats['total_runs']}</div>
+            <div class="bento-sub-pink">last retrain {last_run_str}</div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
 
-    # ── Bento row 2: 3 small cards ──
+    # ── Bento row 2: 3 Supporting Small Cards ──
     c1, c2, c3 = st.columns(3)
     with c1:
         st.markdown(f"""
-        <div class="bento-card bento-sm bento-teal">
-            <div class="card-label">Skills Mapped</div>
-            <div class="card-value-sm">{stats['total_mappings']:,}</div>
+        <div class="bento-card-sm-teal">
+            <div class="bento-label-teal">SKILLS MAPPED</div>
+            <div class="bento-val-sm">{stats['total_mappings']:,}</div>
         </div>
         """, unsafe_allow_html=True)
     with c2:
         st.markdown(f"""
-        <div class="bento-card bento-sm bento-pink">
-            <div class="card-label">Tech Vocab Size</div>
-            <div class="card-value-sm">{stats['total_skills']}</div>
+        <div class="bento-card-sm-pink">
+            <div class="bento-label-pink">TECH VOCAB SIZE</div>
+            <div class="bento-val-sm">{stats['total_skills']}</div>
         </div>
         """, unsafe_allow_html=True)
     with c3:
         st.markdown(f"""
-        <div class="bento-card bento-sm bento-teal">
-            <div class="card-label">Markets Covered</div>
-            <div class="card-value-sm">{stats['total_markets']}</div>
+        <div class="bento-card-sm-teal">
+            <div class="bento-label-teal">MARKETS COVERED</div>
+            <div class="bento-val-sm">{stats['total_markets']}</div>
         </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<div style='height:32px'></div>", unsafe_allow_html=True)
+    st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
-    # ── Charts row ──
-    chart_col1, chart_col2 = st.columns(2)
+    # ── Bento row 3: Where the roles are + Salary spread ──
+    chart_col1, chart_col2 = st.columns([1, 1])
 
     with chart_col1:
-        st.markdown('<div class="section-label">Where the Roles Are</div>', unsafe_allow_html=True)
         country_data = run_query("""
             SELECT country, COUNT(*) AS count 
             FROM job_postings 
             GROUP BY country
             ORDER BY count DESC
+            LIMIT 3
         """)
-        label_map = {"us": "US", "gb": "GB", "in": "IN", "worldwide": "WW"}
-        country_data["code"] = country_data["country"].map(label_map).fillna(country_data["country"].str.upper())
-        country_data = country_data.sort_values("count", ascending=True)
+        max_c = country_data["count"].max() if not country_data.empty else 1
+        
+        bars_html = ""
+        for _, row in country_data.iterrows():
+            code = str(row["country"]).upper()
+            cnt = row["count"]
+            pct = int((cnt / max_c) * 100)
+            cnt_str = f"{cnt/1000:.0f}k" if cnt >= 1000 else str(cnt)
+            bars_html += f"""
+            <div class="country-bar-row">
+                <div class="country-code-lbl">{code}</div>
+                <div class="country-bar-bg">
+                    <div class="country-bar-fill" style="width: {pct}%;"></div>
+                </div>
+                <div class="country-count-lbl">{cnt_str}</div>
+            </div>
+            """
 
-        fig_country = px.bar(
-            country_data, x="count", y="code", orientation="h",
-            text="count",
-            color_discrete_sequence=["#1d9e75"],
-        )
-        fig_country.update_traces(
-            texttemplate="%{text:,}",
-            textposition="outside",
-            textfont=dict(family="JetBrains Mono", size=11, color="#5DCAA5"),
-            marker_color="#1d9e75",
-            marker_line_width=0,
-        )
-        fig_country.update_layout(
-            **PLOTLY_THEME,
-            height=240,
-            margin=dict(l=0, r=60, t=0, b=0),
-            bargap=0.35,
-        )
-        fig_country.update_xaxes(visible=False)
-        fig_country.update_yaxes(tickfont=dict(family="JetBrains Mono", size=12, color="#8099a8"),
-                                 gridcolor="rgba(0,0,0,0)", linecolor="rgba(0,0,0,0)")
-        st.plotly_chart(fig_country, use_container_width=True)
+        st.markdown(f"""
+        <div class="bento-card-panel-teal">
+            <div class="bento-label-teal">WHERE THE ROLES ARE</div>
+            <div style="margin-top: 22px;">
+                {bars_html}
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     with chart_col2:
-        st.markdown('<div class="section-label">Salary Spread (USD)</div>', unsafe_allow_html=True)
         salary_data = run_query("""
-            SELECT country,
-                   (salary_min + salary_max) / 2 * CASE WHEN country = 'gb' THEN 1.27 ELSE 1.0 END AS midpoint
+            SELECT (salary_min + salary_max) / 2 * CASE WHEN country = 'gb' THEN 1.27 ELSE 1.0 END AS midpoint
             FROM job_postings
             WHERE salary_min IS NOT NULL AND salary_max IS NOT NULL
               AND country IN ('us', 'gb')
         """)
-        label_map2 = {"us": "US", "gb": "GB"}
-        salary_data["code"] = salary_data["country"].map(label_map2)
+        if not salary_data.empty and len(salary_data) > 4:
+            med_k = int(salary_data["midpoint"].median() / 1000)
+            q25_k = int(salary_data["midpoint"].quantile(0.25) / 1000)
+            q75_k = int(salary_data["midpoint"].quantile(0.75) / 1000)
+        else:
+            med_k, q25_k, q75_k = 118, 85, 152
 
-        fig_box = px.box(
-            salary_data, x="code", y="midpoint",
-            color="code",
-            color_discrete_map={"US": "#D4537E", "GB": "#F4C0D1"},
-            labels={"midpoint": "USD", "code": ""},
-            points=False,
-        )
-        fig_box.update_traces(line_color="#D4537E", marker_color="#D4537E", fillcolor="rgba(212,83,126,0.12)")
-        fig_box.update_layout(
-            **PLOTLY_THEME,
-            height=240,
-            margin=dict(l=0, r=0, t=0, b=0),
-            showlegend=False,
-        )
-        fig_box.update_yaxes(tickprefix="$", tickformat=",.0f", gridcolor="#1a2228",
-                             tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"))
-        fig_box.update_xaxes(tickfont=dict(family="JetBrains Mono", size=12, color="#8099a8"),
-                             gridcolor="rgba(0,0,0,0)", linecolor="rgba(0,0,0,0)")
-        st.plotly_chart(fig_box, use_container_width=True)
+        # Relative position of IQR fill and median dot (scale 30k to 220k)
+        min_scale, max_scale = 30, 220
+        left_pct = int(((q25_k - min_scale) / (max_scale - min_scale)) * 100)
+        width_pct = int(((q75_k - q25_k) / (max_scale - min_scale)) * 100)
+        dot_pct = int(((med_k - min_scale) / (max_scale - min_scale)) * 100)
 
-    st.markdown('<div class="section-label">Top Hiring Companies</div>', unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class="bento-card-panel-pink">
+            <div class="bento-label-pink">SALARY SPREAD (USD)</div>
+            <div class="salary-range-container">
+                <div class="salary-range-track">
+                    <div class="salary-range-fill" style="left: {left_pct}%; width: {width_pct}%;"></div>
+                    <div class="salary-range-dot" style="left: calc({dot_pct}% - 7px);"></div>
+                </div>
+            </div>
+            <div class="salary-range-sub">median ${med_k}k - IQR ${q25_k}k–${q75_k}k</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="bento-label-teal" style="margin-bottom:12px;">TOP HIRING COMPANIES</div>', unsafe_allow_html=True)
     top_cos = run_query("""
         SELECT company AS Company, COUNT(*) AS `Open Postings`
         FROM job_postings
@@ -573,7 +576,6 @@ if active_tab == "the hunt":
 elif active_tab == "skill signals":
     st.markdown("""
     <div class="page-header">
-        <div class="page-heading">skill signals</div>
         <div class="page-subtitle">What the market is paying attention to — and what it's quietly starting to ignore.</div>
     </div>
     """, unsafe_allow_html=True)
@@ -609,7 +611,7 @@ elif active_tab == "skill signals":
     col1, col2 = st.columns([3, 2])
 
     with col1:
-        st.markdown('<div class="section-label">Demand by Technology</div>', unsafe_allow_html=True)
+        st.markdown('<div class="bento-label-teal">DEMAND BY TECHNOLOGY</div>', unsafe_allow_html=True)
         top_skills = run_query(f"""
             SELECT s.name AS Skill, COUNT(js.job_id) AS Mentions
             FROM skills s
@@ -630,13 +632,13 @@ elif active_tab == "skill signals":
         fig.update_layout(**PLOTLY_THEME, height=450, margin=dict(l=0, r=10, t=0, b=0))
         fig.update_yaxes(categoryorder="total ascending",
                          tickfont=dict(family="Inter", size=12, color="#8099a8"),
-                         gridcolor="#1a2228", linecolor="#1a2228")
+                         gridcolor="#182228", linecolor="#182228")
         fig.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
-                         gridcolor="#1a2228", linecolor="#1a2228")
+                         gridcolor="#182228", linecolor="#182228")
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
-        st.markdown('<div class="section-label">Learn What\'s Adjacent</div>', unsafe_allow_html=True)
+        st.markdown('<div class="bento-label-teal">LEARN WHAT\'S ADJACENT</div>', unsafe_allow_html=True)
         st.caption("Sentence-transformer similarity — `all-MiniLM-L6-v2`")
 
         all_skills_list = run_query("SELECT name FROM skills ORDER BY name")["name"].tolist()
@@ -669,12 +671,12 @@ elif active_tab == "skill signals":
             fig3.update_layout(**PLOTLY_THEME, height=350, margin=dict(l=0, r=50, t=0, b=0))
             fig3.update_yaxes(categoryorder="total ascending",
                               tickfont=dict(family="Inter", size=11, color="#8099a8"),
-                              gridcolor="#1a2228", linecolor="#1a2228")
+                              gridcolor="#182228", linecolor="#182228")
             fig3.update_xaxes(visible=False)
             st.plotly_chart(fig3, use_container_width=True)
 
     st.markdown("<hr>", unsafe_allow_html=True)
-    st.markdown('<div class="section-label">Skills That Move Salary</div>', unsafe_allow_html=True)
+    st.markdown('<div class="bento-label-pink">SKILLS THAT MOVE SALARY</div>', unsafe_allow_html=True)
     st.caption("Average salary (USD) per skill — US and UK postings with salary data, min 10 samples.")
 
     val_skills = run_query("""
@@ -701,9 +703,9 @@ elif active_tab == "skill signals":
         fig4.update_layout(**PLOTLY_THEME, height=360, margin=dict(l=0, r=0, t=0, b=0))
         fig4.update_yaxes(tickprefix="$", tickformat=",.0f",
                           tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
-                          gridcolor="#1a2228", linecolor="#1a2228")
+                          gridcolor="#182228", linecolor="#182228")
         fig4.update_xaxes(tickfont=dict(family="Inter", size=11, color="#8099a8"),
-                          gridcolor="#1a2228", linecolor="#1a2228")
+                          gridcolor="#182228", linecolor="#182228")
         st.plotly_chart(fig4, use_container_width=True)
     else:
         st.info("Insufficient salary-populated mappings to generate valuation charts.")
@@ -715,7 +717,6 @@ elif active_tab == "skill signals":
 elif active_tab == "open roles":
     st.markdown("""
     <div class="page-header">
-        <div class="page-heading">open roles</div>
         <div class="page-subtitle">Live postings, filtered to your stack. Click through and apply directly.</div>
     </div>
     """, unsafe_allow_html=True)
@@ -796,14 +797,14 @@ elif active_tab == "open roles":
             desc_snippet = (str(job["description"] or "")[:260] + "…") if job["description"] else "No preview available."
 
             st.markdown(f"""
-            <div class="job-card">
+            <div style="background:#090e11; border:1px solid #182228; border-radius:10px; padding:20px 24px; margin-bottom:12px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                    <span class="job-badge {badge_class}">{src_label} &nbsp;·&nbsp; {country_display}</span>
-                    <span class="job-salary">{salary_display}</span>
+                    <span style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(93,202,165,0.12);color:#5DCAA5;">{src_label} &nbsp;·&nbsp; {country_display}</span>
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:#5DCAA5;">{salary_display}</span>
                 </div>
-                <div class="job-title">{job['title']}</div>
-                <div class="job-meta">{job['company']} &nbsp;·&nbsp; {job['location'] or country_display}</div>
-                <div class="job-desc">{desc_snippet}</div>
+                <div style="font-size:16px;font-weight:600;color:#d6e4ec;margin:10px 0 3px 0;">{job['title']}</div>
+                <div style="font-size:12px;color:#4a6070;margin-bottom:8px;">{job['company']} &nbsp;·&nbsp; {job['location'] or country_display}</div>
+                <div style="font-size:12px;color:#8099a8;line-height:1.55;">{desc_snippet}</div>
             </div>
             """, unsafe_allow_html=True)
             st.link_button(f"Apply — {job['title']}", job["redirect_url"], use_container_width=False, key=f"apply_btn_{job['id']}_{idx}")
@@ -816,7 +817,6 @@ elif active_tab == "open roles":
 elif active_tab == "pay predictor":
     st.markdown("""
     <div class="page-header">
-        <div class="page-heading">pay predictor</div>
         <div class="page-subtitle">Build your stack. Get a number. Understand exactly which skills are moving the needle.</div>
     </div>
     """, unsafe_allow_html=True)
@@ -845,7 +845,6 @@ elif active_tab == "pay predictor":
         if not user_skills:
             st.warning("Select at least one skill to generate an estimate.")
         else:
-            # Build feature array — identical logic, no changes
             skills_lower = {s.lower() for s in user_skills}
             fv = []
             for col in FEATURE_NAMES:
@@ -871,16 +870,16 @@ elif active_tab == "pay predictor":
 
             # Result card
             st.markdown(f"""
-            <div class="predict-result">
-                <div class="predict-label">Projected Base</div>
-                <div class="predict-value">{local_symbol}{pred_local:,.0f}</div>
-                <div class="predict-sub">{local_suffix} &nbsp;·&nbsp; equivalent to ${pred_usd:,.0f} USD</div>
+            <div style="background:#140911; border:1px solid #291422; border-radius:12px; padding:32px 36px; text-align:center; margin:1.5rem 0;">
+                <div class="bento-label-pink">PROJECTED BASE</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:52px; font-weight:700; color:#D4537E; line-height:1;">{local_symbol}{pred_local:,.0f}</div>
+                <div style="font-size:13px; color:#7a5068; margin-top:8px;">{local_suffix} &nbsp;·&nbsp; equivalent to ${pred_usd:,.0f} USD</div>
             </div>
             """, unsafe_allow_html=True)
 
             # ── SHAP breakdown ──
             st.markdown("<hr>", unsafe_allow_html=True)
-            st.markdown('<div class="section-label">What\'s Driving It</div>', unsafe_allow_html=True)
+            st.markdown('<div class="bento-label-teal">WHAT\'S DRIVING IT</div>', unsafe_allow_html=True)
             st.caption("Per-feature SHAP contributions for this prediction — positive values push salary up, negative push down.")
 
             shap_info = compute_prediction_shap(model, fv, FEATURE_NAMES, top_n=10)
@@ -907,9 +906,9 @@ elif active_tab == "pay predictor":
                 )
                 fig_shap.update_yaxes(categoryorder="total ascending",
                                       tickfont=dict(family="Inter", size=11, color="#8099a8"),
-                                      gridcolor="#1a2228", linecolor="#1a2228")
+                                      gridcolor="#182228", linecolor="#182228")
                 fig_shap.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
-                                      gridcolor="#1a2228", linecolor="#1a2228")
+                                      gridcolor="#182228", linecolor="#182228")
                 st.plotly_chart(fig_shap, use_container_width=True)
 
             # Gauge
@@ -921,12 +920,12 @@ elif active_tab == "pay predictor":
                     "axis": {"range": [30000, 220000], "tickcolor": "#4a6070",
                              "tickfont": {"family": "JetBrains Mono", "size": 9, "color": "#4a6070"}},
                     "bar": {"color": "#D4537E"},
-                    "bgcolor": "#0e1417",
-                    "bordercolor": "#1a2228",
+                    "bgcolor": "#0c1216",
+                    "bordercolor": "#182228",
                     "steps": [
-                        {"range": [30000, 90000],  "color": "#0e1417"},
-                        {"range": [90000, 150000], "color": "#0e1417"},
-                        {"range": [150000, 220000],"color": "#0e1417"},
+                        {"range": [30000, 90000],  "color": "#0c1216"},
+                        {"range": [90000, 150000], "color": "#0c1216"},
+                        {"range": [150000, 220000],"color": "#0c1216"},
                     ]
                 }
             ))
@@ -940,7 +939,7 @@ elif active_tab == "pay predictor":
 
             # Matching jobs
             st.markdown("<hr>", unsafe_allow_html=True)
-            st.markdown('<div class="section-label">Positions in Range</div>', unsafe_allow_html=True)
+            st.markdown('<div class="bento-label-teal">POSITIONS IN RANGE</div>', unsafe_allow_html=True)
             st.caption("Live database postings mentioning one or more of your selected skills.")
 
             placeholders = ", ".join(f":skill_{i}" for i in range(len(user_skills)))
@@ -972,7 +971,6 @@ elif active_tab == "pay predictor":
 elif active_tab == "model health":
     st.markdown("""
     <div class="page-header">
-        <div class="page-heading">model health</div>
         <div class="page-subtitle">Training runs, hyperparameter records, and feature weight distribution — all in one place.</div>
     </div>
     """, unsafe_allow_html=True)
@@ -1000,7 +998,7 @@ elif active_tab == "model health":
         col1, col2 = st.columns([1, 1])
 
         with col1:
-            st.markdown('<div class="section-label">Run History</div>', unsafe_allow_html=True)
+            st.markdown('<div class="bento-label-teal">RUN HISTORY</div>', unsafe_allow_html=True)
             st.dataframe(
                 runs[["RunID", "Trained At", "Type", "Log MAE", "Log RMSE"]],
                 use_container_width=True,
@@ -1008,7 +1006,7 @@ elif active_tab == "model health":
             )
 
         with col2:
-            st.markdown('<div class="section-label">Optimal Parameters</div>', unsafe_allow_html=True)
+            st.markdown('<div class="bento-label-pink">OPTIMAL PARAMETERS</div>', unsafe_allow_html=True)
             try:
                 run_notes = json.loads(best_run["notes"])
                 opt_params = run_notes.get("best_params", {})
@@ -1019,12 +1017,13 @@ elif active_tab == "model health":
                 st.markdown(f"**MAE (USD):** `${opt_raw_mae:,.2f}`")
 
                 params_df = pd.DataFrame(opt_params.items(), columns=["Hyperparameter", "Value"])
+                params_df["Value"] = params_df["Value"].astype(str)
                 st.dataframe(params_df, use_container_width=True, hide_index=True)
             except Exception:
                 st.code(best_run["notes"])
 
         st.markdown("<hr>", unsafe_allow_html=True)
-        st.markdown('<div class="section-label">Feature Weight Distribution</div>', unsafe_allow_html=True)
+        st.markdown('<div class="bento-label-pink">FEATURE WEIGHT DISTRIBUTION</div>', unsafe_allow_html=True)
         st.caption("Relative importance of each variable in the final trained regressor.")
 
         feat_imps = model.feature_importances_
@@ -1042,7 +1041,7 @@ elif active_tab == "model health":
         fig_imp.update_layout(**PLOTLY_THEME, height=400, margin=dict(l=0, r=10, t=0, b=0))
         fig_imp.update_yaxes(categoryorder="total ascending",
                              tickfont=dict(family="Inter", size=11, color="#8099a8"),
-                             gridcolor="#1a2228", linecolor="#1a2228")
+                             gridcolor="#182228", linecolor="#182228")
         fig_imp.update_xaxes(tickfont=dict(family="JetBrains Mono", size=10, color="#6b7f8a"),
-                             gridcolor="#1a2228", linecolor="#1a2228")
+                             gridcolor="#182228", linecolor="#182228")
         st.plotly_chart(fig_imp, use_container_width=True)
