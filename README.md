@@ -207,7 +207,7 @@ DB_USER=your_mysql_username
 DB_PASSWORD=your_mysql_password
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_NAME=skillpulse
+DB_NAME=skillscavenge
 
 ADZUNA_APP_ID=your_adzuna_app_id
 ADZUNA_APP_KEY=your_adzuna_app_key

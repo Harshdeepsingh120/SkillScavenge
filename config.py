@@ -31,7 +31,7 @@ DB_USER = _get_setting("DB_USER")
 DB_PASSWORD = _get_setting("DB_PASSWORD")
 DB_HOST = _get_setting("DB_HOST", "127.0.0.1")
 DB_PORT = _get_setting("DB_PORT", "3306")
-DB_NAME = _get_setting("DB_NAME", "skillpulse")
+DB_NAME = _get_setting("DB_NAME", "skillscavenge")
 DB_USE_SSL = str(_get_setting("DB_USE_SSL", "false")).lower() == "true"
 
 # Adzuna API credentials
