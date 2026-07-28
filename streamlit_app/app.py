@@ -13,7 +13,6 @@ from urllib.parse import quote_plus
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="SkillScavenge — Job Market Intelligence",
-    page_icon="◈",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -30,7 +29,7 @@ html, body, [class*="css"] {
 }
 
 .stApp {
-    background-color: #080c0e;
+    background-color: #0a0f12;
 }
 
 /* ── Hide sidebar entirely ── */
@@ -47,7 +46,7 @@ html, body, [class*="css"] {
 
 /* ── Brand Header Title ── */
 .brand-title-spec {
-    font-family: 'Georgia', serif;
+    font-family: 'Inter', sans-serif;
     font-size: 26px;
     font-weight: 700;
     color: #ffffff;
@@ -55,49 +54,7 @@ html, body, [class*="css"] {
     padding-top: 2px;
 }
 
-/* ── Top Tabs Styling (Right Aligned in col_nav) ── */
-.stTabs [data-baseweb="tab-list"] {
-    background: transparent !important;
-    border: none !important;
-    gap: 1.8rem !important;
-    justify-content: flex-end !important;
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-}
-.stTabs [data-baseweb="tab"] {
-    background: transparent !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    color: #6b7f8a !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 13.5px !important;
-    font-weight: 500 !important;
-    letter-spacing: 0.01em !important;
-    padding: 4px 0px 8px 0px !important;
-    border-radius: 0 !important;
-    border-bottom: 2.5px solid transparent !important;
-    transition: all 0.15s ease !important;
-}
-.stTabs [data-baseweb="tab"]:focus,
-.stTabs [data-baseweb="tab"]:active,
-.stTabs [data-baseweb="tab"]:focus-visible {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: transparent !important;
-}
-.stTabs [data-baseweb="tab"]:hover {
-    color: #d6e4ec !important;
-}
-.stTabs [aria-selected="true"] {
-    background: transparent !important;
-    color: #5DCAA5 !important;
-    font-weight: 600 !important;
-    border-bottom: 2.5px solid #5DCAA5 !important;
-}
 .stTabs [data-baseweb="tab-highlight"] { display: none !important; }
-.stTabs [data-baseweb="tab-border"] { display: none !important; }
-
 /* ── Subtitle ── */
 .page-subtitle-spec {
     font-size: 13.5px;
@@ -112,42 +69,44 @@ html, body, [class*="css"] {
 /* ── Bento Grid Cards Spec ── */
 .card-vault {
     background: #0b1815;
-    border: 1px solid #142e27;
+    border: none;
     border-radius: 12px;
     padding: 24px 28px;
     height: 100%;
 }
 .card-runs {
     background: #180e15;
-    border: 1px solid #2e1425;
+    border: none;
     border-radius: 12px;
     padding: 24px 28px;
     height: 100%;
 }
 .card-sm-teal {
     background: #0b1513;
-    border: 1.5px solid #1d4036;
+    border: none;
+    border-top: 3px solid #5DCAA5;
     border-radius: 12px;
     padding: 18px 22px;
     height: 100%;
 }
 .card-sm-pink {
     background: #160c13;
-    border: 1.5px solid #401d35;
+    border: none;
+    border-top: 3px solid #D4537E;
     border-radius: 12px;
     padding: 18px 22px;
     height: 100%;
 }
 .card-panel-teal {
     background: #091210;
-    border: 1px solid #142923;
+    border: none;
     border-radius: 12px;
     padding: 22px 26px;
     height: 100%;
 }
 .card-panel-pink {
     background: #140911;
-    border: 1px solid #291422;
+    border: none;
     border-radius: 12px;
     padding: 22px 26px;
     height: 100%;
@@ -173,7 +132,7 @@ html, body, [class*="css"] {
 }
 
 .val-hero {
-    font-family: 'Inter', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 46px;
     font-weight: 700;
     color: #ffffff;
@@ -182,7 +141,7 @@ html, body, [class*="css"] {
     margin-bottom: 12px;
 }
 .val-sm {
-    font-family: 'Inter', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 30px;
     font-weight: 700;
     color: #ffffff;
@@ -237,7 +196,7 @@ html, body, [class*="css"] {
     border-radius: 20px;
 }
 .c-val {
-    font-family: 'Inter', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 600;
     color: #5DCAA5;
@@ -269,7 +228,6 @@ html, body, [class*="css"] {
     border-radius: 50%;
     position: absolute;
     top: -4px;
-    box-shadow: 0 0 6px rgba(255,255,255,0.7);
 }
 .sal-sub {
     font-family: 'Inter', sans-serif;
@@ -323,10 +281,16 @@ div[data-baseweb="select"] > div {
 /* ── st.metric override ── */
 [data-testid="stMetric"] {
     background: #0e1417;
-    border: 1px solid #1a2228;
+    border: none;
     border-top: 3px solid #D4537E;
     border-radius: 10px;
     padding: 18px 20px;
+}
+[data-testid="column"]:nth-child(1) [data-testid="stMetric"] {
+    border-top-color: #5DCAA5;
+}
+[data-testid="column"]:nth-child(3) [data-testid="stMetric"] {
+    border-top-color: #5DCAA5;
 }
 [data-testid="stMetricLabel"] p {
     font-size: 9.5px !important;
@@ -343,6 +307,39 @@ div[data-baseweb="select"] > div {
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #090e10; }
 ::-webkit-scrollbar-thumb { background: #141c22; border-radius: 3px; }
+.block-container {
+    position: relative !important;
+}
+.stTabs [role="tablist"] {
+    margin-left: auto !important;
+    width: fit-content !important;
+}
+.stTabs {
+    margin-top: -2.5rem !important;
+}
+.stTabs [role="tab"] {
+    font-weight: 600 !important;
+    color: #d6e4ec !important;
+}
+.stTabs [role="tab"][data-selected="true"] {
+    position: relative !important;
+}
+.stTabs [role="tab"][data-selected="true"] p {
+    font-weight: 700 !important;
+    color: #5DCAA5 !important;
+}
+.stTabs [role="tab"] p {
+    font-weight: 600 !important;
+}
+.stTabs [role="tab"][data-selected="true"]::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    bottom: -2px !important;
+    height: 2px !important;
+    background: #5DCAA5 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -386,29 +383,25 @@ def run_query(sql, params=None):
         return pd.DataFrame(res.fetchall(), columns=res.keys())
 
 # ── Header Row: Title Left, Tabs Right ────────────────────────────────────────
-col_brand, col_nav = st.columns([1.1, 2.9])
-
+col_brand, col_spacer = st.columns([1.1, 2.9])
 with col_brand:
     st.markdown('<div class="brand-title-spec">SkillScavenge</div>', unsafe_allow_html=True)
 
-with col_nav:
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "the hunt",
-        "skill signals",
-        "open roles",
-        "pay predictor",
-        "model health",
-    ])
-
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
+    "the hunt",
+    "skill signals",
+    "open roles",
+    "pay predictor",
+    "model health",
+])
 st.markdown("<div style='border-bottom: 1px solid #141c22; margin-top: 2px; margin-bottom: 0px;'></div>", unsafe_allow_html=True)
-
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 1: THE HUNT — Market Overview
 # ══════════════════════════════════════════════════════════════════════════════
 with tab1:
     st.markdown("""
     <div class="page-subtitle-spec">
-        Every postings scraped, every skill logged, every dollar traced back to the data that predicts it.
+        Raw intake at a glance — how many roles we've captured, where they cluster, and what pay looks like across US/UK listings.
     </div>
     """, unsafe_allow_html=True)
 
@@ -527,10 +520,10 @@ with tab1:
         width_pct = int(((q75_k - q25_k) / (max_scale - min_scale)) * 100)
         dot_pct = int(((med_k - min_scale) / (max_scale - min_scale)) * 100)
 
-        st.markdown(f'<div class="card-panel-pink"><div class="lbl-pink">SALARY SPREAD (USD)</div><div class="sal-track-box"><div class="sal-track"><div class="sal-fill" style="left:{left_pct}%; width:{width_pct}%;"></div><div class="sal-dot" style="left:calc({dot_pct}% - 7px);"></div></div></div><div class="sal-sub">median ${med_k}k - IQR ${q25_k}k–${q75_k}k</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="card-panel-pink"><div class="lbl-pink">SALARY SPREAD (USD)</div><div class="sal-track-box"><div class="sal-track"><div class="sal-fill" style="left:{left_pct}%; width:{width_pct}%;"></div><div class="sal-dot" style="left:calc({dot_pct}% - 7px);"></div></div></div><div class="sal-sub">median ${med_k}k – IQR ${q25_k}k–${q75_k}k</div></div>', unsafe_allow_html=True)
 
     st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
-    st.markdown('<div class="lbl-teal" style="margin-bottom:12px;">TOP HIRING COMPANIES</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card-panel-teal" style="padding-bottom:8px;"><div class="lbl-teal" style="margin-bottom:12px;">TOP HIRING COMPANIES</div></div>', unsafe_allow_html=True)
     top_cos = run_query("""
         SELECT company AS Company, COUNT(*) AS `Open Postings`
         FROM job_postings
@@ -548,7 +541,7 @@ with tab1:
 with tab2:
     st.markdown("""
     <div class="page-subtitle-spec">
-        What the market is paying attention to — and what it's quietly starting to ignore.
+        Slice the corpus by market and source, then compare demand rankings, semantic neighbors, and salary lift by skill.
     </div>
     """, unsafe_allow_html=True)
 
@@ -583,7 +576,7 @@ with tab2:
     col1, col2 = st.columns([3, 2])
 
     with col1:
-        st.markdown('<div class="lbl-teal">DEMAND BY TECHNOLOGY</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card-panel-teal"><div class="lbl-teal">DEMAND BY TECHNOLOGY</div></div>', unsafe_allow_html=True)
         top_skills = run_query(f"""
             SELECT s.name AS Skill, COUNT(js.job_id) AS Mentions
             FROM skills s
@@ -610,8 +603,8 @@ with tab2:
         st.plotly_chart(fig, use_container_width=True)
 
     with col2:
-        st.markdown('<div class="lbl-teal">LEARN WHAT\'S ADJACENT</div>', unsafe_allow_html=True)
-        st.caption("Sentence-transformer similarity — `all-MiniLM-L6-v2`")
+        st.markdown('<div class="card-panel-teal"><div class="lbl-teal">SKILLS IN PROXIMITY</div></div>', unsafe_allow_html=True)
+        st.caption("Cosine similarity via all-MiniLM-L6-v2 embeddings")
 
         all_skills_list = run_query("SELECT name FROM skills ORDER BY name")["name"].tolist()
         base_skill = st.selectbox(
@@ -648,8 +641,8 @@ with tab2:
             st.plotly_chart(fig3, use_container_width=True)
 
     st.markdown("<hr>", unsafe_allow_html=True)
-    st.markdown('<div class="lbl-pink">SKILLS THAT MOVE SALARY</div>', unsafe_allow_html=True)
-    st.caption("Average salary (USD) per skill — US and UK postings with salary data, min 10 samples.")
+    st.markdown('<div class="card-panel-pink" style="padding-bottom:4px;"><div class="lbl-pink">SKILLS THAT MOVE SALARY</div></div>', unsafe_allow_html=True)
+    st.caption("Mean midpoint salary (USD) for US/UK roles with listed pay — minimum 10 samples per skill.")
 
     val_skills = run_query("""
         SELECT s.name AS Skill,
@@ -689,7 +682,7 @@ with tab2:
 with tab3:
     st.markdown("""
     <div class="page-subtitle-spec">
-        Live postings, filtered to your stack. Click through and apply directly.
+        Thirty live listings at a time — filter by geography, source, required skill, or keyword, then apply in one click.
     </div>
     """, unsafe_allow_html=True)
 
@@ -789,7 +782,7 @@ with tab3:
 with tab4:
     st.markdown("""
     <div class="page-subtitle-spec">
-        Build your stack. Get a number. Understand exactly which skills are moving the needle.
+        Assemble a skill set, pick US or UK, and see a model-backed estimate with SHAP attribution and matching open roles.
     </div>
     """, unsafe_allow_html=True)
 
@@ -852,7 +845,7 @@ with tab4:
             # ── SHAP breakdown ──
             st.markdown("<hr>", unsafe_allow_html=True)
             st.markdown('<div class="lbl-teal">WHAT\'S DRIVING IT</div>', unsafe_allow_html=True)
-            st.caption("Per-feature SHAP contributions for this prediction — positive values push salary up, negative push down.")
+            st.caption("SHAP values on log salary — green lifts the estimate, pink pulls it down.")
 
             shap_info = compute_prediction_shap(model, fv, FEATURE_NAMES, top_n=10)
             shap_df = pd.DataFrame(shap_info["feature_contributions"])
@@ -912,7 +905,7 @@ with tab4:
             # Matching jobs
             st.markdown("<hr>", unsafe_allow_html=True)
             st.markdown('<div class="lbl-teal">POSITIONS IN RANGE</div>', unsafe_allow_html=True)
-            st.caption("Live database postings mentioning one or more of your selected skills.")
+            st.caption("Postings in the database that mention at least one of your selected skills.")
 
             placeholders = ", ".join(f":skill_{i}" for i in range(len(user_skills)))
             query_params = {f"skill_{i}": s for i, s in enumerate(user_skills)}
@@ -943,7 +936,7 @@ with tab4:
 with tab5:
     st.markdown("""
     <div class="page-subtitle-spec">
-        Training runs, hyperparameter records, and feature weight distribution — all in one place.
+        Inspect retrain history, stored hyperparameters, and the features the regressor weights most heavily.
     </div>
     """, unsafe_allow_html=True)
 
@@ -967,7 +960,7 @@ with tab5:
         c3.metric("Best Log RMSE", best_run["Log RMSE"])
 
         st.markdown("<hr>", unsafe_allow_html=True)
-        col1, col2 = st.columns([1, 1])
+        col1, col2 = st.columns([1.25, 1])
 
         with col1:
             st.markdown('<div class="lbl-teal">RUN HISTORY</div>', unsafe_allow_html=True)
@@ -996,7 +989,7 @@ with tab5:
 
         st.markdown("<hr>", unsafe_allow_html=True)
         st.markdown('<div class="lbl-pink">FEATURE WEIGHT DISTRIBUTION</div>', unsafe_allow_html=True)
-        st.caption("Relative importance of each variable in the final trained regressor.")
+        st.caption("Relative importance of each input in the saved XGBoost regressor.")
 
         feat_imps = model.feature_importances_
         importance_df = pd.DataFrame({
