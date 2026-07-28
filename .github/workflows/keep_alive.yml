@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Ping Streamlit app
         run: |
-          curl -s -o /dev/null -w "HTTP status: %{http_code}\n" https://skillscavenge.streamlit.app/
+          curl -s -L -o /dev/null -w "HTTP status: %{http_code}\n" https://skillscavenge.streamlit.app/
